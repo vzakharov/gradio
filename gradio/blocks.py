@@ -893,7 +893,7 @@ class Blocks(BlockContext):
                 js=_js,
             )
 
-    def continuous(
+    def run_forever(
         self,
         fn: Optional[Callable] = None,
         inputs: Optional[List[Component]] = None,
