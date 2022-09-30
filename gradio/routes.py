@@ -322,17 +322,6 @@ class App(FastAPI):
             event = Event(websocket)
             if app.blocks.dependencies[fn_index]["trigger"] == "load" and app.blocks.dependencies[fn_index]["continuous"]:
                 utils.run_coro_in_background(app.blocks._queue.process_event, event)
-                # loop = asyncio.get_running_loop()
-                # await .run_in_executor(None, app.blocks._queue.process_event, event)
-                # loop.create_task(future)
-                #utils.run_coro_in_background(app.blocks._queue.process_event, event)
-                # def between_callback():
-                #     loop = asyncio.new_event_loop()
-                #     asyncio.set_event_loop(loop)
-                #     loop.run_until_complete(app.blocks._queue.process_event(event))
-                #     loop.close()
-                # threading.Thread(target=between_callback).start()
-
             else:
                 rank = app.blocks._queue.push(event)
                 if rank is None:
